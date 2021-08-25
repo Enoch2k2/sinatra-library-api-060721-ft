@@ -12,6 +12,8 @@ gem 'pry'
 gem 'bcrypt'
 gem 'tux'
 gem 'faker'
+gem 'json'
+gem "rack-contrib", "~> 2.3"
 
 group :test do
   gem 'rspec'
