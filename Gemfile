@@ -14,6 +14,7 @@ gem 'tux'
 gem 'faker'
 gem 'json'
 gem "rack-contrib", "~> 2.3"
+gem "rack-cors", "~> 1.1"
 
 group :test do
   gem 'rspec'

@@ -5,37 +5,50 @@ class AuthorsController < ApplicationController
   end
 
   get "/authors/:id" do
-    author = Author.find_by_id(params["id"])
-    author.to_json(include: [:books])
+    find_author
+    author_to_json
   end
 
   post "/authors" do
-    author = Author.new(params)
-    if author.save
+    @author = Author.new(params)
+    if @author.save
       # return object as json if saved
-      author.to_json(include: [:books])
+      author_to_json
     else
       # return error messages if not saved
-      { errors: author.errors.full_messages }.to_json
+      author_error_messages
     end
   end
 
   patch "/authors/:id" do
-    author = Author.find_by_id(params["id"])
-    if author.update(params)
-      author.to_json(include: [:books])
+    find_author
+    if @author.update(params)
+      author_to_json
     else
-      { errors: author.errors.full_messages }.to_json
+      author_error_messages
     end
   end
 
   delete "/authors/:id" do
-    author = Author.find_by_id(params["id"])
-    if author
-      author.destroy
-      author.to_json
+    find_author
+    if @author
+      @author.destroy
+      @author.to_json
     else
       { errors: ["Author Doesn't Exist"] }.to_json
     end
   end
+
+  private
+    def find_author
+      @author = Author.find_by_id(params["id"])
+    end
+
+    def author_to_json
+      @author.to_json(include: [:books])
+    end
+
+    def author_error_messages
+      { errors: @author.errors.full_messages }.to_json
+    end
 end

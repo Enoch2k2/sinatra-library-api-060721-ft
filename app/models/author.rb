@@ -2,10 +2,6 @@ class Author < ActiveRecord::Base
   has_many :books, dependent: :destroy # book_ids also given
 
   validates :name, presence: true
-
-  def self.search(term)
-    Author.where("lower(name) LIKE ?", "%#{ term.downcase }%")
-  end
 end
 
 
