@@ -12,7 +12,7 @@ use Rack::Cors do
   end
 
   allow do
-    origins 'library-example-060721-ft.herokuapp.com/'
+    origins 'library-example-060721-ft.herokuapp.com'
     resource '*', headers: :any, methods: [:get, :post, :delete, :put, :patch, :options, :head]
   end
 end
