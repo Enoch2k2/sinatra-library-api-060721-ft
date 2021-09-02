@@ -10,6 +10,11 @@ use Rack::Cors do
     origins 'localhost:3000' # allow requests from ALL frontend origins (if you deploy your application, change this to only allow requests from YOUR frontend origin)
     resource '*', headers: :any, methods: [:get, :post, :delete, :put, :patch, :options, :head]
   end
+
+  allow do
+    origins 'library-example-060721-ft.herokuapp.com/'
+    resource '*', headers: :any, methods: [:get, :post, :delete, :put, :patch, :options, :head]
+  end
 end
 
 # Parse JSON from the request body into the params hash
